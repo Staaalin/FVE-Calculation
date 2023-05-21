@@ -1,7 +1,17 @@
-# 说明
-* BC_Sum
-  * 通过 “from BC_Sum import BC_Sum” 将该函数导入至需要的程序中。
-  * 使用说明：以积分 $$\int \frac{d^3 p}{(2 \pi)^3} \frac{1}{p^4 + 1}$$ 为例，对其进行Matsubara频率反周期边界条件的求和替换 $$p_x \rightarrow (2n_x+1)\pi/L$$ $$p_y \rightarrow (2n_y+1)\pi/L$$ $$p_z \rightarrow (2n_z+1)\pi/L$$ $$\frac{d^3 p}{(2 \pi)^3} \rightarrow \frac{1}{L^3}\sum_{n_x, n_y, n_z=-\infty}^{\infty}$$ 积分式就变为了 $$\int \frac{d^3 p}{(2 \pi)^3} \frac{1}{p^4 + 1} \rightarrow \frac{1}{L^3}\sum_{n_x, n_y, n_z=-\infty}^{\infty} [((\frac{2n_x+1}{L}\pi)^2 + (\frac{2n_y+1}{L}\pi)^2 + (\frac{2n_z+1}{L}\pi)^2)^2+1]^{-1}$$ 箭头左边的数值计算是容易的，而箭头右边的数值计算肉眼可见得更麻烦。而本程序中"BC_Sum"函数通过优化求和过程的重复项，可以以最快的速度和效率计算箭头右边的这串求和。在导入该函数后，具体操作如下
+# BC_Sum
+* 使用命令：
+
+```python
+BC_Sum(f,BC)
+```
+
+其中f(p)应当是一个以动量（模）为自变量的函数，BC='PBC'或'aPBC'，此外一些输入参量是必须的。
+* 参量
+  * L/Lm 正方体系统边长，L单位为fm，Lm单位为自然单位制下的 $MeV^{-1}$ 。
+  * p2_Limit 求和截止的动量模长。
+
+* 通过 “from BC_Sum import BC_Sum” 将该函数导入至需要的程序中。
+* 使用说明：以积分 $$\int \frac{d^3 p}{(2 \pi)^3} \frac{1}{p^4 + 1}$$ 为例，对其进行Matsubara频率反周期边界条件的求和替换 $$p_x \rightarrow (2n_x+1)\pi/L$$ $$p_y \rightarrow (2n_y+1)\pi/L$$ $$p_z \rightarrow (2n_z+1)\pi/L$$ $$\frac{d^3 p}{(2 \pi)^3} \rightarrow \frac{1}{L^3}\sum_{n_x, n_y, n_z=-\infty}^{\infty}$$ 积分式就变为了 $$\int \frac{d^3 p}{(2 \pi)^3} \frac{1}{p^4 + 1} \rightarrow \frac{1}{L^3}\sum_{n_x, n_y, n_z=-\infty}^{\infty} [((\frac{2n_x+1}{L}\pi)^2 + (\frac{2n_y+1}{L}\pi)^2 + (\frac{2n_z+1}{L}\pi)^2)^2+1]^{-1}$$ 箭头左边的数值计算是容易的，而箭头右边的数值计算肉眼可见得更麻烦。而本程序中"BC_Sum"函数通过优化求和过程的重复项，可以以最快的速度和效率计算箭头右边的这串求和。在导入该函数后，具体操作如下
 
 ```python
 import numpy as np
