@@ -74,7 +74,7 @@ r2 = 0
 for i in range(-LL,LL+1):
     for j in range(-LL,LL+1):
         for k in range(-LL,LL+1):
-            r2 = ((((2*i)*np.pi/Lm)**2 + ((2*j)*np.pi/Lm)**2 + ((2*k)*np.pi/Lm)**2)**0.5)
+            rs = ((((2*i)*np.pi/Lm)**2 + ((2*j)*np.pi/Lm)**2 + ((2*k)*np.pi/Lm)**2)**0.5)
             if rs < p2_limit:
                 r2 += f(rs)
 r2 = r2/Lm**3
